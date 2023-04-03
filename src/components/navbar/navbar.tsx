@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
+  const [isFixed, setIsFixed] = useState('relative')
+
+  const threshold:number = 50;
+
+  useEffect(() => {
+    window.addEventListener('scroll', stickNavbar);
+
+    return () => {
+      window.removeEventListener('scroll', stickNavbar);
+    };
+  }, []);
+
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 500 ? setIsFixed('fixed top-0 left-0 z-50') : setIsFixed('relative');
+    }
+  };
+
+
     return (
         <div>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md w-full">
+            <nav className={`bg-white border-gray-200 dark:bg-gray-900 shadow-md w-full sticky ${isFixed}`}>
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="#" className="flex items-center">
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FC SHOP</span>
@@ -44,6 +64,14 @@ const Navbar = () => {
         </li>
       </ul>
     </div>
+  </div>
+  <div className="bg-blue-500 text-center text-white cursor-pointer">
+    <ul className="flex flex-row justify-evenly">
+      <li className='hover:bg-blue-700 w-full'>Men</li>
+      <li className='hover:bg-blue-700 w-full'>Women</li>
+      <li className='hover:bg-blue-700 w-full'>Electronics</li>
+      <li className='hover:bg-blue-700 w-full'>Jewellery</li>
+    </ul>
   </div>
 </nav>
 
