@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-  const [isFixed, setIsFixed] = useState('relative')
-
-  const threshold:number = 50;
+  const [isSticky, setIsSticky] = useState<boolean>(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
-    window.addEventListener('scroll', stickNavbar);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', stickNavbar);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
-
-  const stickNavbar = () => {
-    if (window !== undefined) {
-      let windowHeight = window.scrollY;
-      windowHeight > 500 ? setIsFixed('fixed top-0 left-0 z-50') : setIsFixed('relative');
+  }, []);;
+  
+  const handleScroll = () => {
+    if (window.scrollY > 60) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
     }
   };
 
-
     return (
-        <div>
-            <nav className={`bg-white border-gray-200 dark:bg-gray-900 shadow-md w-full sticky ${isFixed}`}>
+        <div className={`${isSticky ? 'sticky top-0 transition-all duration-500 ease-in-out transform -translate-y-full' : 'sticky top-0'}`}>
+            <nav className={`bg-white border-gray-200 dark:bg-gray-900 shadow-md w-full sticky`}>
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="#" className="flex items-center">
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FC SHOP</span>
@@ -54,13 +54,14 @@ const Navbar = () => {
       </div>
       <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+          <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page" onDoubleClick={() => navigate('/')}>Home</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+          onClick={() => navigate('/about')}>About</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+          <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" onClick={() => navigate('/contact')}>Contacts</a>
         </li>
       </ul>
     </div>

@@ -1,0 +1,4 @@
+.sliderClass::-webkit-scrollbar {
+    display: hidden;
+    background-color: transparent;
+}
