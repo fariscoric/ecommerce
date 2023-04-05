@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar/navbar';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './homepage.css'
+import { useNavigate } from 'react-router-dom';
 
 //INTERFACES
 interface ItemInterface {
@@ -23,6 +24,7 @@ interface Rating {
 
 const HomePage = () => {
     const [item, setItem] = useState<ItemInterface[]>([])
+    const navigate = useNavigate();
 
     //API FETCH
 
@@ -67,8 +69,23 @@ const HomePage = () => {
 
                 //PRODUCT CARDS
 
-<div className="m-2 mt-10 w-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between items-center">
-        <img className="p-8 rounded-t-lg h-52 w-48" src={e.image} alt="product image" />
+<div className="m-2 mt-10 w-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between items-center" >
+        <img className="p-8 rounded-t-lg h-52 w-48 cursor-pointer" src={e.image} alt="product image" onClick={() => {
+    navigate(`/item/${e.id}`, {
+        state: {
+            id: e.id,
+            image: e.image,
+            title: e.title,
+            description: e.description,
+            category: e.category,
+            price: e.price,
+            rating: {
+                rate: e.rating.rate,
+                count: e.rating.count
+            }
+        }
+    })
+}} />
         <h5 className="text-m text-left font-semibold break-normal tracking-tight text-gray-900 flex p-5 dark:text-white">{e.title}</h5>
 
     <div className="px-5 pb-5 w-72">

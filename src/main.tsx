@@ -8,6 +8,7 @@ import Navbar from './components/navbar/navbar'
 import Footer from './components/footer/footer'
 import AboutUs from './pages/aboutus/aboutus'
 import Contact from './pages/contact/contact'
+import ItemPage from './pages/itempage/itempage'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Router>
@@ -16,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/" element={<HomePage/>}/>
         <Route path="/about" element={<AboutUs/>}/>
         <Route path="/contact" element={<Contact/>}/>
-        
+        <Route path="/item/:id" element={<ItemPage/>}/>
       </Routes>
       <Footer/>
     </Router>
