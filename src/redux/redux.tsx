@@ -1,25 +1,43 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { createAction, createReducer, configureStore } from '@reduxjs/toolkit'
 
-interface Action {
-    type: string;
-    payload?: any;
+export const addToCart = createAction<{ productId: string; quantity: number}>(
+    'cart/addToCart'
+)
+
+interface CartItem {
+    productId: number;
+    quantity: number;
 }
 
-const initialState = {
-    count: 0,
+interface CartState {
+    items: CartItem[];
+    total: number;
 }
 
-function counterReducer(state = initialState, action: Action) {
-    switch(action.type) {
-        case 'INCREMENT':
-            return { ...state, count: state.count + 1 };
-        case 'DECREMENT':
-            return { ...state, count: state.count - 1 };
-        default:
-            return state;
-    }
+const initialState: CartState = {
+    items: [],
+    total: 0,
 }
 
-const store = configureStore({
-    reducer: counterReducer,
+const cartReducer = createReducer(initialState, (builder) => {
+    builder
+    .addCase(addToCart,(state,action) => {
+        const {productId, quantity} = action.payload;
+        const existingItemIndex = state.items.findIndex((item) => item.productId === productId)
+            if (existingItemIndex !== -1) {
+                state.items[existingItemIndex].quantity += quantity;
+                state.total++
+            } else {
+                state.items.push({productId, quantity});
+                state.total++
+            }
+    })
 })
+
+export const store = configureStore({
+    reducer: {
+        cart: cartReducer
+    }
+});
+
+export default cartReducer;

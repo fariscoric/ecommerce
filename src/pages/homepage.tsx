@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './homepage.css'
 import { useNavigate } from 'react-router-dom';
+import { store } from '../redux/redux';
 
 //INTERFACES
 interface ItemInterface {
@@ -25,6 +26,21 @@ interface Rating {
 const HomePage = () => {
     const [item, setItem] = useState<ItemInterface[]>([])
     const navigate = useNavigate();
+
+    function addToCart(productId, quantity) {
+        return {
+            type: 'cart/addToCart',
+            payload: {
+                productId,
+                quantity,
+            },
+        };
+    }
+
+    const onClickHandler = (e) => {
+        store.dispatch(addToCart(e,1 ))
+        console.log(store.getState())
+    }
 
     //API FETCH
 
@@ -94,7 +110,11 @@ const HomePage = () => {
         </div>
         <div className="flex items-center justify-evenly">
             <span className="text-l font-bold text-gray-900 dark:text-white">${e.price}</span>
-            <a href="#" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+            <a href="#" onClick={() => {
+                console.log(e)
+                onClickHandler(e.id)
+            } }
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
         </div>
     </div>
 </div>

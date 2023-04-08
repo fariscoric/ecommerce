@@ -7,11 +7,14 @@ import HomePage from './pages/homepage'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import AboutUs from './pages/aboutus'
-import Contact from './pages/contact/contact'
-import ItemPage from './pages/itempage/itempage'
+import Contact from './pages/contact'
+import ItemPage from './pages/itempage'
+import { Provider } from 'react-redux'
+import { store } from './redux/redux'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Router>
+      <Provider store={store}>
       <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
@@ -20,5 +23,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path="/item/:id" element={<ItemPage/>}/>
       </Routes>
       <Footer/>
+      </Provider>
     </Router>
 )
