@@ -27,19 +27,23 @@ const HomePage = () => {
     const [item, setItem] = useState<ItemInterface[]>([])
     const navigate = useNavigate();
 
-    function addToCart(productId, quantity) {
+    function addToCart(productId:number, quantity:number, title:string, image:string, price: number, description: string,) {
         return {
             type: 'cart/addToCart',
             payload: {
                 productId,
                 quantity,
+                title,
+                image,
+                price,
+                description,
             },
         };
     }
 
-    const onClickHandler = (e) => {
-        store.dispatch(addToCart(e,1 ))
-        console.log(store.getState())
+    const onClickHandler = (e:any) => {
+        store.dispatch(addToCart(e.id,1,e.title,e.image,e.price,e.description))
+        console.log(e)
     }
 
     //API FETCH
@@ -111,8 +115,7 @@ const HomePage = () => {
         <div className="flex items-center justify-evenly">
             <span className="text-l font-bold text-gray-900 dark:text-white">${e.price}</span>
             <a href="#" onClick={() => {
-                console.log(e)
-                onClickHandler(e.id)
+                onClickHandler(e)
             } }
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
         </div>
