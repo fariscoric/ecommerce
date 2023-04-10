@@ -43,7 +43,6 @@ const HomePage = () => {
 
     const onClickHandler = (e:any) => {
         store.dispatch(addToCart(e.id,1,e.title,e.image,e.price,e.description))
-        console.log(e)
     }
 
     //API FETCH
