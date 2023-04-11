@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { PageContext } from '../context/context';
+import { useContext } from 'react';
 
 interface ItemInterface {
   id: number;
@@ -17,7 +20,9 @@ interface Rating {
 }
 
 
-const ElectronicsCategory = () => {
+const CategoryPage = () => {
+  const navigate = useNavigate();
+  const {activePage, setActivePage} = useContext(PageContext)
   const [item, setItem] = useState<ItemInterface[]>([])
 
   const getApi = () => {
@@ -35,9 +40,25 @@ useEffect(() => {
     <div>
       {item.map((e) => (
             <div>
-              {e.category === `electronics` ?
+              {e.category === `${activePage}` ?
               <div className="border border-gray-200 rounded-lg m-10 p-5 flex sm:flex-row flex flex-col items-center h-max">
-              <img src={e.image} className="h-36 w-32"/>
+              <img src={e.image} className="h-36 w-32 cursor-pointer" onClick={() => {
+    navigate(`/item/${e.id}`, {
+        state: {
+            id: e.id,
+            image: e.image,
+            title: e.title,
+            description: e.description,
+            category: e.category,
+            price: e.price,
+            rating: {
+                rate: e.rating.rate,
+                count: e.rating.count
+            }
+        }
+    })
+    setActivePage('')
+}}/>
               <div className="flex flex-col justify-between h-36 pl-5 w-full">
                   <div className="flex flex-row">
                       <h1 className="text-3xl">{e.title}</h1>
@@ -55,4 +76,4 @@ useEffect(() => {
   )
 }
 
-export default ElectronicsCategory
+export default CategoryPage

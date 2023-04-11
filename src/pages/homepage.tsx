@@ -27,6 +27,8 @@ const HomePage = () => {
     const [item, setItem] = useState<ItemInterface[]>([])
     const navigate = useNavigate();
 
+    //REDUX LOGIC
+
     function addToCart(productId:number, quantity:number, title:string, image:string, price: number, description: string,) {
         return {
             type: 'cart/addToCart',
@@ -71,7 +73,7 @@ const HomePage = () => {
     }
 
     return (
-        <div>
+        <div className='homepagediv'>
             <div className="flex flex-row overflow-x-scroll scroll scroll-smooth sliderClass" id='slider'>
                 {/* HORIZONTAL SCROLL BUTTONS */}
             <button type="button" className="text-white absolute top-1/2 right-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={sliderRight}>

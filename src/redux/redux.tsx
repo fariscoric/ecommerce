@@ -27,7 +27,6 @@ const initialState: CartState = {
     total: 0,
 }
 
-
 const cartReducer = createReducer(initialState, (builder) => {
     builder
     .addCase(addToCart,(state,action) => {

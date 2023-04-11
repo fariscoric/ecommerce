@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import { PageContext } from '../context/context';
+import { useContext } from 'react';
 
 const Navbar = () => {
+  const {activePage, setActivePage} = useContext(PageContext)
   const [isSticky, setIsSticky] = useState<boolean>(false)
-  const [activePage, setActivePage] = useState('home')
   const navigate = useNavigate();
   const cartStore:any = useSelector(store => store)
 
@@ -69,24 +71,29 @@ const Navbar = () => {
         <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."></input>
       </div>
       <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-        <a href="#" className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${activePage === 'home' ? 'text-blue-700' : ''}`}
-          onClick={() => {
+        <div onClick={() => {
             navigate('/')
             setActivePage('home')
-          }}>Home</a>
-        </li>
+            console.log(activePage)
+          }} className={`${activePage === 'home' ? 'text-blue-700' : ''}`}>
         <li>
-          <a href="#" className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${activePage === 'about' ? 'text-blue-700' : ''}`}
+        <a className={`block cursor-pointer py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+          >Home</a>
+        </li>
+        </div>
+        <li>
+          <a href="#" className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${activePage === `about` ? 'text-blue-700' : ''}`}
           onClick={() => {
             navigate('/about')
             setActivePage('about')
+            console.log(activePage)
           }}>About</a>
         </li>
         <li>
-          <a href="#" className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${activePage === 'contacts' ? 'text-blue-700' : ''}`} onClick={() => {
+          <a href="#" className={`block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 ${activePage === 'contacts' ? 'text-blue-700' : ''}`} onClick={() => {
             navigate('/contact')
             setActivePage('contacts')
+            console.log(activePage)
           }}>Contacts</a>
         </li>
       </ul>
@@ -94,21 +101,25 @@ const Navbar = () => {
   </div>
   <div className="bg-blue-500 text-center text-white cursor-pointer">
     <ul className="flex flex-row justify-evenly">
-    <li className={`hover:bg-blue-700 w-full ${activePage === 'men' ? 'bg-blue-700' : ''}`} onClick={() => {
-        navigate('/men')
-        setActivePage('men')
+    <li className={`hover:bg-blue-700 w-full ${activePage === `men's clothing` ? 'bg-blue-700' : ''}`} onClick={() => {
+        navigate('/category')
+        setActivePage(`men's clothing`)
+        console.log(activePage)
       }}>Men</li>
-      <li className={`hover:bg-blue-700 w-full ${activePage === 'women' ? 'bg-blue-700' : ''}`} onClick={() => {
-        navigate('/women')
-        setActivePage('women')
+      <li className={`hover:bg-blue-700 w-full ${activePage === `women's clothing` ? 'bg-blue-700' : ''}`} onClick={() => {
+        navigate('/category')
+        setActivePage(`women's clothing`)
+        console.log(activePage)
       }}>Women</li>
       <li className={`hover:bg-blue-700 w-full ${activePage === 'electronics' ? 'bg-blue-700' : ''}`} onClick={() => {
-        navigate('/electronics')
+        navigate('/category')
         setActivePage('electronics')
+        console.log(activePage)
       }}>Electronics</li>
-      <li className={`hover:bg-blue-700 w-full ${activePage === 'jewellery' ? 'bg-blue-700' : ''}`} onClick={() => {
-        navigate('/jewellery')
-        setActivePage('jewellery')
+      <li className={`hover:bg-blue-700 w-full ${activePage === 'jewelery' ? 'bg-blue-700' : ''}`} onClick={() => {
+        navigate('/category')
+        setActivePage('jewelery')
+        console.log(activePage)
       }}>Jewellery</li>
     </ul>
   </div>
