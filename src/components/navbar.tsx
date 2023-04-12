@@ -3,13 +3,68 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { PageContext } from '../context/context';
 import { useContext } from 'react';
+import axios from 'axios';
+
+interface ItemInterface {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: Rating;
+}
+
+interface Rating {
+  rate: number;
+  count: number;
+}
+
+
 
 const Navbar = () => {
   const {activePage, setActivePage} = useContext(PageContext)
+  const [isActive, setIsActive] = useState(false)
   const [isSticky, setIsSticky] = useState<boolean>(false)
+  const [query, setQuery] = useState('')
+  const [results, setResults] = useState<ItemInterface[]>([])
+  const [item, setItem] = useState<ItemInterface[]>([])
   const navigate = useNavigate();
   const cartStore:any = useSelector(store => store)
 
+
+  const handleInputChange = (e:any) => {
+    const newQuery = e.target.value
+    setQuery(newQuery)
+    const newResults = item.filter((option) =>
+      option.title.toLowerCase().includes(newQuery.toLowerCase())
+    );
+    setResults(newResults);
+  }
+
+  //API FETCH
+
+  const getApi = () => {
+    axios.get('https://fakestoreapi.com/products')
+    .then((response) => {
+        setItem(response.data)
+    })
+}
+
+useEffect(() => {
+    getApi()
+},[])
+
+  const handleFocus = () => {
+    setIsActive(true)
+  }
+
+  const handleBlur = () => {
+    setIsActive(false)
+  }
+
+
+  //SCROLL ANIMATION
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -47,7 +102,14 @@ const Navbar = () => {
         <svg className="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
         <span className="sr-only">Search icon</span>
       </div>
-      <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."></input>
+      <input type="search" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(e) => handleInputChange(e)} placeholder="Search..." onBlur={handleBlur} onFocus={handleFocus}></input>
+      {isActive && (
+        <ul className='bg-red-700'>
+          {results.map((e) => ( 
+            <li>{e.title}</li>
+          ))}
+        </ul>
+      )}
     </div>
     <div className='flex items-center ml-5 cursor-pointer ' onClick={() => {
       navigate('/cart')
@@ -86,7 +148,6 @@ const Navbar = () => {
           onClick={() => {
             navigate('/about')
             setActivePage('about')
-            console.log(activePage)
           }}>About</a>
         </li>
         <li>
