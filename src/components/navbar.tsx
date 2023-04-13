@@ -56,11 +56,13 @@ useEffect(() => {
 },[])
 
   const handleFocus = () => {
-    setIsActive(true)
+    setIsActive(!isActive)
+    console.log(isActive, 'handleFocus')
   }
 
   const handleBlur = () => {
-    setIsActive(false)
+    setIsActive(isActive)
+    console.log(isActive, 'handleBlur')
   }
 
 
@@ -77,11 +79,18 @@ useEffect(() => {
   const handleScroll = () => {
     if (window.scrollY > 60) {
       setIsSticky(true);
+      setIsActive(false);
     } else {
       setIsSticky(false);
+      setTimeout(() => {
+        setIsActive(true)
+      },1000)
     }
   };
 
+  const testHandler = () => {
+    console.log('test')
+  } 
     return (
         <div className={`${isSticky ? 'sticky top-0 transition-all duration-500 ease-in-out transform -translate-y-full' : 'sticky top-0'}`}>
             <nav className={`bg-white border-gray-200 dark:bg-gray-900 shadow-md w-full sticky`}>
@@ -103,14 +112,32 @@ useEffect(() => {
         <span className="sr-only">Search icon</span>
       </div>
       <input type="search" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={(e) => handleInputChange(e)} placeholder="Search..." onBlur={handleBlur} onFocus={handleFocus}></input>
-      {isActive && (
-        <ul className='bg-red-700'>
-          {results.map((e) => ( 
-            <li>{e.title}</li>
-          ))}
-        </ul>
+      {!isActive && (
+        <div className='bg-white absolute bottom-auto w-52 h-64 border border-blue-700 flex flex-col overflow-y-scroll'>
+          {results.map((e) => (
+            <div key={e.id} onClick={() => {
+              navigate(`/item/${e.id}`, {
+                state: {
+                    id: e.id,
+                    image: e.image,
+                    title: e.title,
+                    description: e.description,
+                    category: e.category,
+                    price: e.price,
+                    rating: {
+                        rate: e.rating.rate,
+                        count: e.rating.count
+                    }
+                }
+            })
+              console.log('test')
+            }} className='p-2 hover:bg-blue-700 hover:text-white text-black border-b cursor-pointer border-gray-400'>{e.title}</div>
+        ))}
+        
+        </div>
       )}
     </div>
+    {console.log(isActive)}
     <div className='flex items-center ml-5 cursor-pointer ' onClick={() => {
       navigate('/cart')
       setActivePage('cart')
