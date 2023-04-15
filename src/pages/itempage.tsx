@@ -33,18 +33,18 @@ const ItemPage = () => {
     }
 
     return (
-        <div>
-            <div className="border border-gray-200 shadow-md rounded-lg m-10 p-5 flex sm:flex-row flex flex-col items-center">
-                <img src={itemImage} className="h-72"/>
+        <div className="dark:bg-gray-700">
+            <div className="dark:bg-gray-800 dark:text-white border border-gray-200 shadow-md rounded-lg m-10 p-5 flex sm:flex-row flex flex-col dark:border-emerald-300 items-center">
+                <img src={itemImage} className="h-72 rounded-lg"/>
                 <div className="flex flex-col justify-between h-full pl-5">
                     <div className="flex flex-row">
                         <h1 className="text-3xl">{itemTitle}</h1>
-                        <span className="bg-emerald-100 text-emerald-800 text-s font-semibold mr-2 h-full px-2.5 py-2.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{itemRating.rate}</span>
+                        <span className="bg-emerald-100 text-emerald-800 text-s font-semibold mr-2 h-full px-2.5 py-2.5 rounded dark:bg-emerald-200 dark:text-emerald-800 ml-3">{itemRating.rate}</span>
                     </div>
                     <div className="w-3/4"><h1>{itemDescription}</h1></div>
                     <div className="flex flex-row justify-between">
                         <h1 className="text-3xl">${itemPrice}</h1>
-                        <a onClick={() => onClickHandler(state)} className="cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+                        <a onClick={() => onClickHandler(state)} className="cursor-pointer text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Add to cart</a>
                     </div>
                 </div>
             </div>

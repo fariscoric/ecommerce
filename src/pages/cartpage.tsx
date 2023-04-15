@@ -25,12 +25,14 @@ const CartPage = () => {
       );
 
     return (
-    <div>
+    <div className='dark:text-white dark:bg-gray-700'>
         <h1 className='text-3xl m-5'>Your cart:</h1>
-        <div className='border border-gray-200 rounded-lg m-10 min-h-64 bg-emerald-500'>
+        <div className='border border-gray-200 dark:border-emerald-400 rounded-lg m-10 min-h-64 bg-emerald-500 dark:bg-emerald-800'>
         {cartItems.cart.items.map((e:any) => (
-                <div className="border border-gray-200 rounded-lg p-5 m-3 bg-white shadow-md overflow-hidden flex sm:flex-row flex flex-col items-center">
+                <div className="border dark:bg-gray-800 border-gray-200 dark:border-gray-500 rounded-lg p-5 m-3 bg-white shadow-md overflow-hidden flex sm:flex-row flex flex-col items-center">
+                    <div className='bg-white rounded-lg p-2'>
                 <img src={e.image} className="h-36 w-32"/>
+                    </div>
                 <div className="flex flex-col justify-between h-36 pl-5 w-full h-auto sm:h-44">
                     <div className="flex flex-row h-auto">
                         <h1 className="text-3xl">{e.title}</h1>
@@ -46,7 +48,7 @@ const CartPage = () => {
         </div>
         <div className='flex flex-row justify-between items-center'>
             <h1 className='text-3xl m-5'>Total price: ${totalPrice.toFixed(2)}</h1>
-            <button className="text-white m-5 bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Proceed to checkout</button>
+            <button className="text-white m-5 bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Proceed to checkout</button>
         </div>
     </div>
   )

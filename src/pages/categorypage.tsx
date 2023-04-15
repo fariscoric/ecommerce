@@ -56,11 +56,12 @@ const onClickHandler = (e:any) => {
 }
 
   return (
-    <div>
+    <div className="dark:bg-gray-700">
       {item.map((e) => (
             <div>
               {e.category === `${activePage}` ?
-              <div className="border border-gray-200 shadow-md rounded-lg m-10 p-5 flex sm:flex-row flex flex-col items-center h-max">
+              <div className="dark:bg-gray-900 dark:text-white border border-gray-200 shadow-md rounded-lg m-10 p-5 flex sm:flex-row flex flex-col dark:border-emerald-500 items-center h-max">
+                <div className='bg-white p-2 rounded-lg'>
               <img src={e.image} className="h-36 w-32 cursor-pointer" onClick={() => {
     navigate(`/item/${e.id}`, {
         state: {
@@ -78,13 +79,14 @@ const onClickHandler = (e:any) => {
     })
     setActivePage('')
 }}/>
+  </div>
               <div className="flex flex-col justify-between sm:h-36 pl-5 w-full">
                   <div className="flex flex-row">
                       <h1 className="text-3xl">{e.title}</h1>
                   </div>
                   <div className="flex flex-row justify-between flex-col sm:flex-row w-full">
                       <h1 className="text-3xl">${e.price}</h1>
-                      <a href="#" onClick={() => onClickHandler(e)} className="mt-2 text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+                      <a href="#" onClick={() => onClickHandler(e)} className="dark:bg-emerald-700 dark:hover:bg-emerald-800 mt-2 text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-emerald-400">Add to cart</a>
                   </div>
               </div>
               </div> : <></>}
