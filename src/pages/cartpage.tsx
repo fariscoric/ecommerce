@@ -25,11 +25,11 @@ const CartPage = () => {
       );
 
     return (
-    <div className='dark:text-white dark:bg-gray-700'>
+    <div className='dark:text-white dark:bg-neutral-700'>
         <h1 className='text-3xl m-5'>Your cart:</h1>
-        <div className='border border-gray-200 dark:border-emerald-400 rounded-lg m-10 min-h-64 bg-emerald-500 dark:bg-emerald-800'>
+        <div className='border border-neutral-200 dark:border-red-400 rounded-lg m-10 min-h-64 bg-blue-500 dark:bg-red-800'>
         {cartItems.cart.items.map((e:any) => (
-                <div className="border dark:bg-gray-800 border-gray-200 dark:border-gray-500 rounded-lg p-5 m-3 bg-white shadow-md overflow-hidden flex sm:flex-row flex flex-col items-center">
+                <div key={e.id} className="border dark:bg-neutral-800 border-neutral-200 dark:border-neutral-500 rounded-lg p-5 m-3 bg-white shadow-md overflow-hidden flex sm:flex-row flex flex-col items-center">
                     <div className='bg-white rounded-lg p-2'>
                 <img src={e.image} className="h-36 w-32"/>
                     </div>
@@ -39,8 +39,8 @@ const CartPage = () => {
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center w-full">
                         <h1 className="text-3xl">${e.price}</h1>
-                        <div className="flex flex-col sm:flex-row text-center"><h1 className='pr-5 text-xl pt-2'>Amount: {e.quantity}</h1>
-                        <a href="#" onClick={() => removeHandler(e)} className="mt-2 bg-emerald-700 cursor-pointer text-white p-2 rounded-lg text-center hover:bg-emerald-900">Remove from cart</a></div>
+                        <div className="flex flex-col items-center sm:flex-row text-center"><h1 className='pr-5 text-xl pt-2'>Amount: {e.quantity}</h1>
+                        <button onClick={() => removeHandler(e)} className="dark:bg-red-700 dark:hover:bg-red-800 mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:focus:ring-red-400">Remove from cart</button></div>
                     </div>
                 </div>
                 </div>
@@ -48,7 +48,7 @@ const CartPage = () => {
         </div>
         <div className='flex flex-row justify-between items-center'>
             <h1 className='text-3xl m-5'>Total price: ${totalPrice.toFixed(2)}</h1>
-            <button className="text-white m-5 bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Proceed to checkout</button>
+            <button className="text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Proceed to checkout</button>
         </div>
     </div>
   )
