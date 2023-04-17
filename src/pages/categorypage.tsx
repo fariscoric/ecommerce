@@ -86,7 +86,7 @@ const onClickHandler = (e:any) => {
                   </div>
                   <div className="flex flex-row justify-between flex-col sm:flex-row w-full">
                       <h1 className="text-3xl">${e.price}</h1>
-                      <button onClick={() => onClickHandler(e)} className="bg-blue-700 hover:bg-blue-800  dark:bg-red-700 dark:hover:bg-red-800 mt-2 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:focus:ring-red-400">Add to cart</button>
+                      <button onClick={() => onClickHandler(e)} className="bg-red-700 hover:bg-red-800  dark:bg-red-700 dark:hover:bg-red-800 mt-2 text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:focus:ring-red-400">Add to cart</button>
                   </div>
               </div>
               </div> : <></>}

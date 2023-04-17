@@ -36,7 +36,7 @@ const FooterComp = () => {
               </div>
           </div>
       </div>
-      <hr className="my-6 border-blue-500 sm:mx-auto dark:border-red-700 lg:my-8" />
+      <hr className="my-6 border-red-500 sm:mx-auto dark:border-red-700 lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-neutral-500 sm:text-center dark:text-neutral-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Faris Coric™</a>. All Rights Reserved.
           </span>

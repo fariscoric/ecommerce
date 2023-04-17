@@ -126,7 +126,7 @@ useEffect(() => {
             <nav className={`bg-white border-neutral-200 dark:bg-neutral-900 shadow-md w-full sticky`}>
   <div className="max-w-screen-xl flex flex-wrap flex-col sm:flex-row items-center justify-between mx-auto p-4">
   <a className="cursor-pointer flex items-center">
-      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-semibold whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-blue-500 dark:text-red-500' : ''}`} onClick={() => {
+      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-semibold whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-red-500 dark:text-red-600' : ''}`} onClick={() => {
         navigate('/')
         setActivePage('home')
       }}>COMMERCE</h1>
@@ -140,9 +140,9 @@ useEffect(() => {
         <svg className="w-5 h-5 text-neutral-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
         <span className="sr-only">Search icon</span>
       </div>
-      <input type="search" id="search-navbar" ref={myElementRef} className="block w-full p-2 pl-10 text-sm text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" onChange={(e) => handleInputChange(e)} placeholder="Search..." onBlur={handleBlur} onFocus={handleFocus}></input>
+      <input type="search" id="search-navbar" ref={myElementRef} className="block w-full p-2 pl-10 text-sm text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 focus:ring-red-500 focus:border-red-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" onChange={(e) => handleInputChange(e)} placeholder="Search..." onBlur={handleBlur} onFocus={handleFocus}></input>
       {isActive === true ? (
-        <div className='bg-white absolute bottom-auto rounded-lg dark:bg-neutral-700 dark:text-white w-52 h-64 border border-blue-700 dark:border-red-700 flex flex-col overflow-y-scroll'>
+        <div className='bg-white absolute bottom-auto rounded-lg dark:bg-neutral-700 dark:text-white w-52 h-64 border border-red-700 dark:border-red-700 flex flex-col overflow-y-scroll'>
           {results.map((e) => (
             <div key={e.id} onClick={() => navigate(`/item/${e.id}`, {
               state: {
@@ -157,7 +157,7 @@ useEffect(() => {
                       count: e.rating.count
                   }
               }
-          })} className='p-2 hover:bg-blue-700 dark:hover:bg-red-700 dark:text-white hover:text-white text-black border-b cursor-pointer border-neutral-400'>{e.title}</div>
+          })} className='p-2 hover:bg-red-700 dark:hover:bg-red-700 dark:text-white hover:text-white text-black border-b cursor-pointer border-neutral-400'>{e.title}</div>
         ))}
         
         </div>
@@ -168,7 +168,7 @@ useEffect(() => {
       setActivePage('cart')
     }}>
       <div className='bg-red-500 rounded-xl text-white w-5 h-5 flex items-center justify-center text-sm absolute bottom-5 left-3'><h1>{cartStore.cart.total}</h1></div>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 dark:text-white ${activePage === 'cart' ? 'dark:text-red-500 text-blue-700' : ''}`}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 dark:text-white ${activePage === 'cart' ? 'dark:text-red-500 text-red-700' : ''}`}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
       </svg>
     </div>
@@ -180,21 +180,21 @@ useEffect(() => {
 
   </div>
   </div>
-  <div className="bg-blue-500 dark:bg-red-800 text-center text-white cursor-pointer">
+  <div className="bg-red-500 dark:bg-red-700 text-center text-white cursor-pointer">
     <ul className="flex flex-row justify-evenly">
-    <li className={`hover:bg-blue-700 dark:hover:bg-red-700 w-full ${activePage === `men's clothing` ? 'dark:bg-red-600 bg-blue-600' : ''}`} onClick={() => {
+    <li className={`hover:bg-red-700 dark:hover:bg-red-800 w-full ${activePage === `men's clothing` ? 'dark:bg-red-500 bg-red-600' : ''}`} onClick={() => {
         navigate('/category')
         setActivePage(`men's clothing`)
       }}>Men</li>
-      <li className={`hover:bg-blue-700 dark:hover:bg-red-700 w-full ${activePage === `women's clothing` ? 'dark:bg-red-600 bg-blue-600' : ''}`} onClick={() => {
+      <li className={`hover:bg-red-700 dark:hover:bg-red-800 w-full ${activePage === `women's clothing` ? 'dark:bg-red-500 bg-red-600' : ''}`} onClick={() => {
         navigate('/category')
         setActivePage(`women's clothing`)
       }}>Women</li>
-      <li className={`hover:bg-blue-700 dark:hover:bg-red-700 w-full ${activePage === 'electronics' ? 'dark:bg-red-600 bg-blue-600' : ''}`} onClick={() => {
+      <li className={`hover:bg-red-700 dark:hover:bg-red-800 w-full ${activePage === 'electronics' ? 'dark:bg-red-500 bg-red-600' : ''}`} onClick={() => {
         navigate('/category')
         setActivePage('electronics')
       }}>Electronics</li>
-      <li className={`hover:bg-blue-700 dark:hover:bg-red-700 w-full ${activePage === 'jewelery' ? 'dark:bg-red-600 bg-blue-600' : ''}`} onClick={() => {
+      <li className={`hover:bg-red-700 dark:hover:bg-red-800 w-full ${activePage === 'jewelery' ? 'dark:bg-red-500 bg-red-600' : ''}`} onClick={() => {
         navigate('/category')
         setActivePage('jewelery')
       }}>Jewellery</li>
