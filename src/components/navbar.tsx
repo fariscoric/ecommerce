@@ -122,7 +122,7 @@ useEffect(() => {
   }
 
     return (
-        <div className={`${isSticky ? 'sticky top-0 transition-all duration-500 ease-in-out transform -translate-y-full' : 'sticky top-0'}`}>
+        <div className={`${isSticky ? 'sticky top-0 z-10 transition-all duration-500 ease-in-out transform -translate-y-full' : 'sticky top-0 z-10'}`}>
             <nav className={`bg-white border-neutral-200 dark:bg-neutral-900 shadow-md w-full sticky`}>
   <div className="max-w-screen-xl flex flex-wrap flex-col sm:flex-row items-center justify-between mx-auto p-4">
   <a className="cursor-pointer flex items-center">
@@ -157,7 +157,7 @@ useEffect(() => {
                       count: e.rating.count
                   }
               }
-          })} className='p-2 hover:bg-red-700 dark:hover:bg-red-700 dark:text-white hover:text-white text-black border-b cursor-pointer border-neutral-400'>{e.title}</div>
+          })} className='p-2 hover:bg-red-700 z-20 dark:hover:bg-red-700 dark:text-white hover:text-white text-black border-b cursor-pointer border-neutral-400'>{e.title}</div>
         ))}
         
         </div>

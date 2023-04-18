@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import './homepage.css'
 import { useNavigate } from 'react-router-dom';
 import { store } from '../redux/redux';
-import Carousel from '../components/carousel';
+import CarouselComponent from '../components/carousel';
 
 //INTERFACES
 interface ItemInterface {
@@ -74,7 +74,9 @@ const HomePage = () => {
     }
 
     return (
-        <div className='dark:bg-neutral-700'>
+        <div className='dark:bg-neutral-700 relative'>
+            <CarouselComponent/>
+            <div className='relative'>
             <div className="flex flex-row overflow-x-scroll scroll scroll-smooth sliderClass" id='slider'>
                 {/* HORIZONTAL SCROLL BUTTONS */}
             <button type="button" className="text-white absolute top-1/2 right-5 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-400" onClick={sliderRight}>
@@ -126,6 +128,7 @@ const HomePage = () => {
     </div>
 </div>
             ))}
+            </div>
             </div>
         </div>
     );
