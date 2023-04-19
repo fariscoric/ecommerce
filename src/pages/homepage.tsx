@@ -75,7 +75,9 @@ const HomePage = () => {
 
     return (
         <div className='dark:bg-neutral-700 relative'>
-            <CarouselComponent/>
+            <div className='shadow-2xl bg-black'>
+                <CarouselComponent/>
+            </div>
             <div className='relative'>
             <div className="flex flex-row overflow-x-scroll scroll scroll-smooth sliderClass" id='slider'>
                 {/* HORIZONTAL SCROLL BUTTONS */}

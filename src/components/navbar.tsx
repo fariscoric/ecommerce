@@ -126,7 +126,7 @@ useEffect(() => {
             <nav className={`bg-white border-neutral-200 dark:bg-neutral-900 shadow-md w-full sticky`}>
   <div className="max-w-screen-xl flex flex-wrap flex-col sm:flex-row items-center justify-between mx-auto p-4">
   <a className="cursor-pointer flex items-center">
-      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-semibold whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-red-500 dark:text-red-600' : ''}`} onClick={() => {
+      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-semibold whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-red-500 dark:text-red-400' : ''}`} onClick={() => {
         navigate('/')
         setActivePage('home')
       }}>COMMERCE</h1>
@@ -143,7 +143,7 @@ useEffect(() => {
       <input type="search" id="search-navbar" ref={myElementRef} className="block w-full p-2 pl-10 text-sm text-neutral-900 border border-neutral-300 rounded-lg bg-neutral-50 focus:ring-red-500 focus:border-red-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" onChange={(e) => handleInputChange(e)} placeholder="Search..." onBlur={handleBlur} onFocus={handleFocus}></input>
       {isActive === true ? (
         <div className='bg-white absolute bottom-auto rounded-lg dark:bg-neutral-700 dark:text-white w-52 h-64 border border-red-700 dark:border-red-700 flex flex-col overflow-y-scroll'>
-          {results.map((e) => (
+          {results?.map((e) => (
             <div key={e.id} onClick={() => navigate(`/item/${e.id}`, {
               state: {
                   id: e.id,
@@ -168,7 +168,7 @@ useEffect(() => {
       setActivePage('cart')
     }}>
       <div className='bg-red-500 rounded-xl text-white w-5 h-5 flex items-center justify-center text-sm absolute bottom-5 left-3'><h1>{cartStore.cart.total}</h1></div>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 dark:text-white ${activePage === 'cart' ? 'dark:text-red-500 text-red-700' : ''}`}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 dark:text-white ${activePage === 'cart' ? 'dark:text-red-400 text-red-700' : ''}`}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
       </svg>
     </div>
