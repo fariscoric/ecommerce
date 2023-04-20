@@ -126,7 +126,7 @@ useEffect(() => {
             <nav className={`bg-white border-neutral-200 dark:bg-neutral-900 shadow-md w-full sticky`}>
   <div className="max-w-screen-xl flex flex-wrap flex-col sm:flex-row items-center justify-between mx-auto p-4">
   <a className="cursor-pointer flex items-center">
-      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-semibold whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-red-500 dark:text-red-400' : ''}`} onClick={() => {
+      <h1 className={`self-center mb-2 sm:mb-0 text-2xl font-serif whitespace-nowrap dark:text-white ${activePage === 'home' ? 'text-red-500 dark:text-red-500' : ''}`} onClick={() => {
         navigate('/')
         setActivePage('home')
       }}>COMMERCE</h1>
